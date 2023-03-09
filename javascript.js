@@ -1,6 +1,5 @@
 function chercheAdresse(valeur)
 {
-    document.getElementById('liste_adresse').innerHTML = '';
     //On fait notre requête Ajax (sans jquery promis gérald)
     // fetch('ajax.php?adresse='+valeur)
     // .then(function(response) {
@@ -30,7 +29,6 @@ function chercheAdresse(valeur)
             retour+= '<ul>';
             let element = document.getElementById('result');
             element.innerHTML = retour;
-            element.style.display = 'block';
             element.style.background = "#fff";
         }
         else {
