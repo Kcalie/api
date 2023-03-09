@@ -1,3 +1,4 @@
+<!--http://localhost/api/ajax.php?adresse=california-->
 <?php
 // on verfie si on a bien un debut d'adresse
 if(!empty($_GET['adresse']))
@@ -12,7 +13,7 @@ if(!empty($_GET['adresse']))
     // on fait passer l'url
     curl_setopt($ch,CURLOPT_URL,$url);
     // on valide l'utilisation du ssl (https)
-    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,true);
+    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
     // on va executer la requete
     $resultat = curl_exec($ch);
     echo '<pre>';
