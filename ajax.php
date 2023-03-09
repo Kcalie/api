@@ -1,25 +1,39 @@
-<!--http://localhost/api/ajax.php?adresse=california-->
 <?php
-// on verfie si on a bien un debut d'adresse
+// On vérifie si on a bien un début d'adresse
 if(!empty($_GET['adresse']))
 {
     $adresse = urlencode($_GET['adresse']);
-    // on fait notre requete curl
-    $url = "https://api-adresse.data.gouv.fr/search/?q=".$adresse;
-    // on initialise une session curl 
+    // Url où on doit faire notre reuqête
+    $url = "http://api-adresse.data.gouv.fr/search/?q=".$adresse;
+    // On initialise une session CURL
     $ch = curl_init();
-    // on va mettre une option pour nous retourner le résultat
-    curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-    // on fait passer l'url
-    curl_setopt($ch,CURLOPT_URL,$url);
-    // on valide l'utilisation du ssl (https)
-    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-    // on va executer la requete
+    //On va mettre une option pour nous retourner le résultat
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);//Ture peut être remplacé par 1
+    // On fait passer l'url en option
+    curl_setopt($ch, CURLOPT_URL, $url);
+    //On valide l'utilisation de ssl (https)
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+    // On exécute la requête
     $resultat = curl_exec($ch);
-    echo '<pre>';
-    print_r(json_decode($resultat));
-    echo '<pre>';
-    // on ferme notre session curl
+    $resultat = json_decode($resultat);
+    //On va boucler sur les résultats
+    $str = [];
+    $i = 0;
+    foreach($resultat->features as $res)
+    {
+        //On va stocker les informations
+        $str[] = array(
+            'label' => $res->properties->label,
+            'cp' => $res->properties->postcode,
+            'adresse' => $res->properties->name,
+            'ville' => $res->properties->city,
+        );
+        
+        $i++;
+    }
+    //On ferme notre session CURL
     curl_close($ch);
+    //On retourne au format json de notre tableau
+    echo json_encode($str);
 }
 ?>

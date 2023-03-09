@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Test API Adresse</title>
+</head>
+<body>
+    <h1>Formulaire API</h1>
+    <form autocomplete="off" action="enregistrer.php" method="get">
+        <div class="autocomplete">
+            <input type="text" onkeyup="chercheAdresse(this.value);" name="adresse" placeholder="Votre adresse">
+            <div id="result">
+
+            </div>
+        </div>
+        <button type="submit">enregistrer</button>
+    </form>
+    <script type="text/javascript" src="javascript.js"></script>
+</body>
+</html>
