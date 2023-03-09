@@ -29,7 +29,8 @@ function chercheAdresse(valeur)
             retour+= '<ul>';
             let element = document.getElementById('result');
             element.innerHTML = retour;
-            element.style.background = "#fff";
+            /*element.style.display = 'block';
+            element.style.background = "#fff";*/
         }
         else {
             console.log('Requête échouée');
