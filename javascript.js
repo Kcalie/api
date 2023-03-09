@@ -23,7 +23,7 @@ function chercheAdresse(valeur)
             let retour = '<ul id="liste">';
             for(let i=0; i< xhr.response.length;i++)
             {
-                retour+= '<li>'+xhr.response[i].label+'<li>';
+                retour+= '<li onclick="selection(`'+xhr.response[i].cp+'`,`'+xhr.response[i].ville+'`,`'+xhr.response[i].adresse+'`)">'+xhr.response[i].label+'</li>';
                 //document.getElementById('liste_adresse').innerHTML+= '<option value="'+xhr.response[i].label+'">'+xhr.response[i].label+'</option>';
             }
             retour+= '<ul>';
@@ -40,5 +40,11 @@ function chercheAdresse(valeur)
         console.log('Erreur réseau');
     };
     xhr.send();
-    
+}
+function selection(code,ville,adresse)
+{
+    document.getElementById('cp').value = code; 
+    document.getElementById('ville').value = ville; 
+    document.getElementById('adresse').value = adresse; 
+    document.getElementById('result').style.display = 'none'; 
 }
